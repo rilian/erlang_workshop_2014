@@ -1,6 +1,13 @@
 Erlang Workshop 2014
 ---
 
+1) install erlang, kvs, mad, rebar
+
+2) put mad, rebar to PATH
+
+
+3) get source code
+
 ```
 git clone https://github.com/5HT/n2o.git
 cd n2o/samples
@@ -18,4 +25,4 @@ mad repl
 
 ```
 
-open http://127.0.0.1:8000/login
+4) open http://127.0.0.1:8000/login

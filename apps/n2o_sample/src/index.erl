@@ -8,17 +8,21 @@ message() -> wf:js_escape(wf:html_encode(wf:q(message))).
 main()    -> #dtl{file="index",app=n2o_sample,bindings=[{body,body()}]}.
 
 body() ->[ 
-       #span{body="User: "++ wf:user()},
-       #panel{id=history},
-       #textbox{id=message},
-       #button{id=send,body="Chat",postback={chat},source=[message]} ].
+  #span{body="User: "++ wf:user()},
+  #br{},
+  #textbox{id=message},
+  #button{id=send,body="Chat",postback={chat},source=[message]},
+  #panel{id=history}].
 
-event(init) -> wf:reg({topic,room});
+event(init) ->
+  wf:reg({topic,room});
 
-event({chat}) -> wf:send({topic,room},{client,{peer(), message()}});
+event({chat}) ->
+  wf:send({topic,room},{client,{peer(), message()}});
 
 event(X={client,{Peer,Message}}) ->
-  wf:insert_bottom(history,#span{body=Peer++Message}),
+  wf:insert_bottom(history,#br{}),
+  wf:insert_bottom(history,#span{body=wf:user()++" said "++Peer++Message}),
   io:format("Client Received: ~p",[X]);
 
 event(Event) -> skip.

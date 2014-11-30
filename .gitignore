@@ -2,4 +2,5 @@ deps/
 .DS_Store
 apps/n2o_sample/ebin/
 apps/n2o_sample/priv/
+.idea/
 
